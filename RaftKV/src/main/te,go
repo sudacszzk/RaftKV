@@ -1,0 +1,23 @@
+package main
+
+import "fmt"
+import "math/rand"
+import "time"
+
+const (
+	//HeartbeatTimeout = 125
+	ElectionTimeout  = 1000
+)
+
+func RandomizedElectionTimeout() time.Duration {
+	r:=rand.New(rand.NewSource(time.Now().UnixNano()))
+	return time.Duration(ElectionTimeout+r.Intn(ElectionTimeout)) * time.Millisecond
+}
+
+func main() {
+	for i:=0;i<=10;i++{
+		fmt.Println(RandomizedElectionTimeout())
+	}
+	
+	
+}
